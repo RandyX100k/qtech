@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="btn_sale_order_form" model="ir.ui.view">
+        <field name="name">btn.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="view_btn_apply_change" invisible="1"/>
+                <button 
+                type="object" name="apply_margen" 
+                class="btn btn-link mb-1 px-0" 
+                string="Aplicar margen"
+                invisible="not view_btn_apply_change"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
