@@ -19,8 +19,9 @@ class SaleCustom(models.Model):
 
     def apply_margen(self):
         for record in self:
-            margen = record.pricelist_id.margen or 0.0
-            for line in record.order_line:
-                base_price = line.product_id.list_price
-                line.price_unit = base_price * (1 + margen / 100)
-            record.view_btn_apply_change = False
+            if record.pricelist_id.margen > 0:
+                margen = record.pricelist_id.margen or 0.0
+                for line in record.order_line:
+                    base_price = line.product_id.list_price
+                    line.price_unit = base_price * (1 + margen / 100)
+                record.view_btn_apply_change = False
